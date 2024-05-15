@@ -18,6 +18,12 @@ ScreenshotProcessor screenshotAsFiles(Directory directory) {
         case ImageByteFormat.rawUnmodified:
         case ImageByteFormat.rawRgba:
           return '.bmp';
+        case ImageByteFormat.rawStraightRgba:
+          // TODO: Handle this case.
+          break;
+        case ImageByteFormat.rawExtendedRgba128:
+          // TODO: Handle this case.
+          break;
       }
     }();
     final file = File(

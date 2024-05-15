@@ -7,8 +7,6 @@ import 'binding/window.dart';
 
 abstract class DevicePreviewDevtools {
   static void enable() {
-    print(
-        'Enabled, available devices : [ ${Devices.all.map((x) => x.identifier.toString()).join(',')} ]');
     PreviewWidgetsFlutterBinding.ensureInitialized();
   }
 
@@ -62,8 +60,6 @@ abstract class DevicePreviewDevtools {
 
   static Future<void> setDevice(DeviceInfo? device) async {
     PreviewWidgetsFlutterBinding.previewBinding.device = device;
-    if (WidgetsBinding.instance != null) {
-      await WidgetsBinding.instance!.reassembleApplication();
-    }
+    await WidgetsBinding.instance.reassembleApplication();
   }
 }

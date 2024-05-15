@@ -1,4 +1,3 @@
-import 'dart:ui';
 
 import 'package:device_frame/src/info/info.dart';
 

@@ -5,6 +5,7 @@ analyzer:
     missing_required_param: error
     missing_return: error
     always_declare_return_types: error
+    non_nullable_equals_parameter: ignore
 
   exclude:
     - lib/**/*.g.dart

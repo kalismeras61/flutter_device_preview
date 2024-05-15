@@ -5,6 +5,7 @@ analyzer:
     missing_required_param: error
     missing_return: error
     always_declare_return_types: error
+    deprecated_member_use: ignore
 
   exclude:
     - lib/**/*.g.dart

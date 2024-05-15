@@ -1,7 +1,10 @@
-import 'dart:typed_data';
+// ignore: unnecessary_import
+// ignore_for_file: deprecated_member_use
+
 import 'dart:ui' as ui;
 
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 
 class PreviewWindow implements ui.SingletonFlutterWindow {
   @override
@@ -79,13 +82,6 @@ class PreviewWindow implements ui.SingletonFlutterWindow {
   @override
   set onSemanticsEnabledChanged(ui.VoidCallback? value) =>
       parent.onSemanticsEnabledChanged = value;
-
-  @override
-  ui.SemanticsActionCallback? get onSemanticsAction => parent.onSemanticsAction;
-
-  @override
-  set onSemanticsAction(ui.SemanticsActionCallback? value) =>
-      parent.onSemanticsAction = value;
 
   @override
   ui.VoidCallback? get onTextScaleFactorChanged =>
@@ -169,17 +165,6 @@ class PreviewWindow implements ui.SingletonFlutterWindow {
     onMetricsChanged?.call();
   }
 
-  ui.Rect? _previewPhysicalGeometry;
-
-  @override
-  ui.Rect get physicalGeometry =>
-      _previewPhysicalGeometry ?? parent.physicalGeometry;
-
-  set physicalGeometry(ui.Rect? value) {
-    _previewPhysicalGeometry = value;
-    onMetricsChanged?.call();
-  }
-
   ui.Size? _previewPhysicalSize;
 
   @override
@@ -203,11 +188,6 @@ class PreviewWindow implements ui.SingletonFlutterWindow {
 
   @override
   ui.PlatformDispatcher get platformDispatcher => parent.platformDispatcher;
-
-  @override
-  void render(ui.Scene scene) {
-    parent.render(scene);
-  }
 
   @override
   void scheduleFrame() {
@@ -246,9 +226,6 @@ class PreviewWindow implements ui.SingletonFlutterWindow {
       parent.updateSemantics(update);
 
   @override
-  ui.ViewConfiguration get viewConfiguration => parent.viewConfiguration;
-
-  @override
   ui.WindowPadding get viewInsets => parent.viewInsets;
 
   ui.WindowPadding? _previewViewPadding;
@@ -278,6 +255,27 @@ class PreviewWindow implements ui.SingletonFlutterWindow {
 
   @override
   String? get systemFontFamily => parent.systemFontFamily;
+
+  @override
+  ui.Display get display => parent.display;
+
+  @override
+  ui.GestureSettings get gestureSettings => parent.gestureSettings;
+
+  @override
+  bool get nativeSpellCheckServiceDefined =>
+      parent.nativeSpellCheckServiceDefined;
+
+  @override
+  ui.ViewConstraints get physicalConstraints => parent.physicalConstraints;
+
+  @override
+  int get viewId => parent.viewId;
+
+  @override
+  void render(ui.Scene scene, {ui.Size? size}) {
+    parent.render(scene, size: size);
+  }
 }
 
 class PreviewWindowPadding implements ui.WindowPadding {
